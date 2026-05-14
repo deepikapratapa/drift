@@ -216,3 +216,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Drift specific
+.env
+data/*.csv
+data/*.parquet
+mlruns/
+*.pkl
+*.joblib
+__pycache__/
+.pytest_cache/
