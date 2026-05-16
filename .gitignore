@@ -226,3 +226,12 @@ mlruns/
 *.joblib
 __pycache__/
 .pytest_cache/
+
+# Large data and model files
+data/*.parquet
+data/*.json
+data/*.pkl
+data/*.csv
+data/plots/
+mlflow.db
+mlruns/
