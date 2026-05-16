@@ -1,0 +1,44 @@
+# .github/workflows/ci.yml
+# Drift CI — runs on every push to main
+# Lints code and runs tests
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -e .
+
+      - name: Lint with ruff
+        run: |
+          ruff check drift/ app/ --ignore E501,F401
+
+      - name: Run tests
+        run: |
+          pytest tests/ -v --tb=short
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-1
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
