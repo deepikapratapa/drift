@@ -1,5 +1,7 @@
 # drift
 
+![CI](https://github.com/deepikapratapa/drift/actions/workflows/ci.yml/badge.svg)
+
 > Behavioral intelligence platform — user archetype modeling, churn prediction, and GenAI persona generation on 285M ecommerce events.
 
 ---
