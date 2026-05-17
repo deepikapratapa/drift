@@ -113,7 +113,9 @@ def train(features_path: Path) -> None:
     print(f"\nTrain: {len(X_train):,} | Test: {len(X_test):,}")
 
     # Handle class imbalance — scale_pos_weight upweights the minority class
-    neg = (y_train == 0).sum(); pos = (y_train == 1).sum(); scale_pos_weight = neg / pos
+    neg = (y_train == 0).sum()
+    pos = (y_train == 1).sum()
+    scale_pos_weight = neg / pos
     print(f"  scale_pos_weight: {scale_pos_weight:.2f}")
 
     # MLflow experiment
