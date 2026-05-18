@@ -1,17 +1,87 @@
+<div align="center">
+
 # drift
 
-![CI](https://github.com/deepikapratapa/drift/actions/workflows/ci.yml/badge.svg) [![Spaces](https://img.shields.io/badge/🤗-Open%20in%20Spaces-blue)](https://huggingface.co/spaces/dpratapa/drift) ![Python](https://img.shields.io/badge/python-3.11-7c6af7) ![XGBoost](https://img.shields.io/badge/XGBoost-AUC%200.9987-f76a8c) ![AWS](https://img.shields.io/badge/AWS-S3%20%7C%20Athena-f7a26a) ![License](https://img.shields.io/badge/license-MIT-6af7a2)
+**Behavioral intelligence platform**
 
-> **Behavioral intelligence platform** — user archetype modeling, churn prediction, and GenAI persona generation on 109M ecommerce events.
+*User archetype modeling · Churn prediction · GenAI persona generation*
+
+![CI](https://github.com/deepikapratapa/drift/actions/workflows/ci.yml/badge.svg)
+[![HuggingFace](https://img.shields.io/badge/🤗%20Live%20Demo-HuggingFace%20Spaces-a855f7)](https://huggingface.co/spaces/dpratapa/drift)
+![Python](https://img.shields.io/badge/Python-3.11-7c6af7?logo=python&logoColor=white)
+![XGBoost](https://img.shields.io/badge/XGBoost-AUC%200.9987-f76a8c)
+![AWS](https://img.shields.io/badge/AWS-S3%20%7C%20Athena-f7a26a?logo=amazon-aws&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-containerized-3b82f6?logo=docker&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-6af7a2)
+
+<br>
+
+![Drift Dashboard](assets/dashboard-main.png)
+
+<br>
+
+### [→ Open Live Demo on HuggingFace Spaces](https://huggingface.co/spaces/dpratapa/drift)
+
+</div>
 
 ---
 
-## The problem
+## What it does
 
 Most analytics platforms tell you **what** users did.
 Drift tells you **who they are** and **where they're going**.
 
-Given a stream of raw user interaction events, Drift identifies which users are about to churn, what behavioral archetype they belong to, and generates plain-English persona reports that ops and product teams can actually act on.
+Given a stream of raw user interaction events, Drift:
+
+- Engineers 48 behavioral features across 3M users from 109M raw events
+- Predicts churn probability per user with an XGBoost classifier (AUC 0.9987)
+- Clusters users into behavioral archetypes using HDBSCAN
+- Explains predictions with SHAP feature importances
+- Generates plain-English persona reports via LLaMA 3 70B (Groq)
+- Monitors production data for feature distribution drift weekly
+
+---
+
+## Screenshots
+
+<table>
+<tr>
+<td width="50%">
+
+**User Analysis**
+Input behavioral metrics → get churn score, archetype, risk factors, and recommended intervention.
+
+![User Analysis](assets/dashboard-main.png)
+
+</td>
+<td width="50%">
+
+**AI Persona Report**
+SHAP values feed LLaMA 3 70B to generate a plain-English behavioral narrative.
+
+![Persona Report](assets/dashboard-persona.png)
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+**Model Performance**
+Live metrics, SHAP feature importance chart, ROC/PR curves, confusion matrix.
+
+![Model Performance](assets/dashboard-model.png)
+
+</td>
+<td width="50%">
+
+**Behavioral Archetypes**
+HDBSCAN clusters with churn rates and feature profiles per segment.
+
+![Archetypes](assets/dashboard-archetypes.png)
+
+</td>
+</tr>
+</table>
 
 ---
 
@@ -124,7 +194,7 @@ Behavioral clusters discovered via HDBSCAN on 200K users:
 
 ## GenAI persona layer
 
-SHAP feature importances feed a structured prompt to LLaMA 3 70B via Groq API. Output is a plain-English persona report:
+SHAP feature importances feed a structured prompt to LLaMA 3 70B via Groq API:
 
 ```
 The Cart Abandoner is a high-browse, low-convert user who has added items to
@@ -168,6 +238,7 @@ limited-time offer, deployed Sunday 6–8pm.
 
 ```
 drift/
+├── assets/                 # Dashboard screenshots
 ├── drift/
 │   ├── ingestion/          # S3 upload + Athena SQL
 │   ├── features/           # Session, temporal, geo features
@@ -234,12 +305,10 @@ pytest tests/ -v
 
 ---
 
-## Live demo
+<div align="center">
 
-**[→ Open in HuggingFace Spaces](https://huggingface.co/spaces/dpratapa/drift)**
+**[→ Open Live Demo on HuggingFace Spaces](https://huggingface.co/spaces/dpratapa/drift)**
 
----
+*Built by [Deepika Pratapa](https://github.com/deepikapratapa)*
 
-## License
-
-MIT
+</div>
